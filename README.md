@@ -1,9 +1,9 @@
-# oosa-week3-s1982773
-oosa-week3-s1982773 created by GitHub Classroom
+# OOSA-Assignment-2020-s1982773
+OOSA-Assignment-2020-s1982773 created by GitHub Classroom
 
-# Week3
+# OOSA-Assignment-2020
 
-There are 2 tasks in this week. Fit.py is for the Function fitting part,whereas findQuartile_test.py is for Binary search.
+There are 4 tasks in final project. Fit.py is for the Function fitting part,whereas findQuartile_test.py is for Binary search.
 
 ## Fit.py
 ### Requirements
