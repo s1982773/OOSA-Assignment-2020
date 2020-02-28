@@ -11,7 +11,7 @@ from scipy import interpolate
 import pseudoRaster
 
 
-class contour_lines_():
+class contour_lines_(tiffHandle):
     
     def sortZ(self):
         '''
