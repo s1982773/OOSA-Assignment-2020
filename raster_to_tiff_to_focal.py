@@ -68,14 +68,15 @@ for i in Location:
     Vup = rasterArray[laty+1,lonx]
     Vdown = rasterArray[laty-1,lonx]
 
-
+    #set the bounds
     if(lonx<=1 or laty<=1 or lonx>=rasterArray.shape[1]-1 or laty>=rasterArray.shape[0]-1):
         continue
 
+    #
     elif((Vdown!=0 and Vup!=0) or (Vleft!=0 and Vright!=0) or (Vup!=0 and Vleft!=0) or (Vup!=0 and Vright!=0) or (Vleft!=0 and Vdown!=0) or (Vright!=0 and Vdown!=0)):
 
-        s1 = s2 = s3 = s4 = 1
-        s5 = s6 = s7 = s8 = 1.414
+        s1 = s2 = s3 = s4 = 1 #distance within row and col
+        s5 = s6 = s7 = s8 = 1.414 # distance of diagonal
         print(rasterArray[laty,lonx])
 
 
@@ -88,7 +89,6 @@ for i in Location:
         if(rasterArray[laty+1,lonx+1]==0):
             s8=0
         S=s1+s2+s3+s4+s5+s6+s7+s8
-#            print(laty)
 
         rasterArray[laty,lonx] = ((Vdown*s1+Vup*s2+Vleft*s3+Vright*s4+rasterArray[laty-1,lonx-1]*s5+rasterArray[laty+1,lonx-1]*s6+rasterArray[laty-1,lonx+1]*s7+rasterArray[laty+1,lonx+1]*s8)/S)
 
