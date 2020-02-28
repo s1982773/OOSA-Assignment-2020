@@ -28,12 +28,15 @@ def overlay(self,filename1,filename2):
     Returns index of rows in X that are common to Y.
     """
     tiffHandle.readTiff()
-    intersection = np.empty((filename1.shape[0],filename1.shape[1]))
+    intersection = np.empty((filename1.shape[0],filename1.shape[1])) #create empty array
 
-    for y in range(intersection.shape[0]):
+    for y in range(intersection.shape[0]):  
         for x in range(intersection.shape[1]):
-            if(filename1[y,x] != 0 and filename2[y,x] != 0):
-                intersection[y,x] = filename1[y,x]-filename2[y,x]
+            
+            # only need overaly part,so any null data is unacceptable
+            if(filename1[y,x] != 0 and filename2[y,x] != 0): 
+                #minus the overaly to get the difference of the elevation
+                intersection[y,x] = filename1[y,x]-filename2[y,x] 
     
     tiffHandle.writeTiff(intersection)
 
