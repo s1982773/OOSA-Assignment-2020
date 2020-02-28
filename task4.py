@@ -24,8 +24,8 @@ class contour_lines_(tiffHandle):
         '''
         Function to determine interval by user and set each value based on the interval
         '''
-        maxZ = max(self.z)
-        minZ = min(self.z)
+        maxZ = max(self.newZ)
+        minZ = min(self.newZ)
         lenZ = maxZ-minZ
 
         self.block = int(lenZ/interval)
@@ -46,7 +46,6 @@ class contour_lines_(tiffHandle):
         Function to plot contour line by interpolateline
         '''
         pseudoRaster(res,bounds)
-
         #Construct a 2-D grid and interpolate on it
         x = np.arrange(self.minX,self.maxX,self.interval_range)
         y = np.arrange(self.minY,self.maxY,self.interval_range)
