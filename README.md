@@ -7,9 +7,8 @@ There are 4 tasks in final project. Fit.py is for the Function fitting part,wher
 
 ## task1.py
 ### Requirements
-* modifying to include the correlation on the plot 
-* Rescale the y axis to something more sensible 
-* What other error metrics could you extract?
+* process a flight line to a DEM of any chosen resolution 
+* convert DEM to geotiff format 
 
 
 ##### To include the correlation text on the plot, i used `plt.text(x,y,r' '=+str())`
@@ -28,8 +27,9 @@ There are 4 tasks in final project. Fit.py is for the Function fitting part,wher
 
 ## task2.py
 ### Requirements
- * Add a binary search to the dataSorter() class from last week 
- * Add a method to plot the sorted array along with a line to show the crossing point found by a binary search
+ * Adapt the code from task 1 
+ * process all of the 2015 data in to a single gap-filled DEM
+ * in geotiff format, at a resolution of your choice
 
 ##### Add a binary search
 I used `zip()` which is to map the similar index of multiple containers so that they can be used just using as single entity.
@@ -55,8 +55,8 @@ Therefore, the age can be found by the wage's index was called.
 
 ## task3.py
 ### Requirements
- * Add a binary search to the dataSorter() class from last week 
- * Add a method to plot the sorted array along with a line to show the crossing point found by a binary search
+ * Write a new class to read both DEMs in to RAM 
+ * Add a method to produce a new geotiff showing the change in elevation between the two dates
 
 ##### Add a binary search
 I used `zip()` which is to map the similar index of multiple containers so that they can be used just using as single entity.
@@ -71,8 +71,9 @@ Also, `map(list())` can help to make sure the type is list and store them in x a
 
 ## task4.py
 ### Requirements
- * Add a binary search to the dataSorter() class from last week 
- * Add a method to plot the sorted array along with a line to show the crossing point found by a binary search
+ * Add a method to calculate contour lines	  
+ * user defined interval
+ * produce an image of the change in elevation overlayed with “contour lines”	
 
 ##### Add a binary search
 I used `zip()` which is to map the similar index of multiple containers so that they can be used just using as single entity.
