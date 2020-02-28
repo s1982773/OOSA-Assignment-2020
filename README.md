@@ -15,15 +15,23 @@ There are 4 tasks in final project. Each of them is connected to the previous on
     
     
     op = lvisGround(filename,onlyBounds=True)
+    #set bounds
     x0=op.bounds[0]
     y0=op.bounds[1]
     x1=(op.bounds[2]-op.bounds[0])/15+op.bounds[0]
     y1=(op.bounds[3]-op.bounds[1])/15+op.bounds[1]
-##### To convert DEM to geotiff format, i simply used the function `self.wage` by 1000
+##### To convert DEM to geotiff format, i simply used the function `tiffHandle(filename,maxX,minX,maxY,minY,res,x,y)` 
     
     
-    plt.plot(self.age,self.wage/1000,'.')
-    plt.plot(x,y/1000)
+    self.minX = x0
+    self.minY = y0
+    self.maxX = x1
+    self.maxY = y1
+    self.nX = nx
+    self.nY = ny
+    self.x = x
+    self.y = y
+
     
 ##### i also try to make a class
     
@@ -36,26 +44,56 @@ There are 4 tasks in final project. Each of them is connected to the previous on
  * process all of the 2015 data in to a single gap-filled DEM
  * in geotiff format, at a resolution of your choice
 
-##### Add a binary search
-I used `zip()` which is to map the similar index of multiple containers so that they can be used just using as single entity.
-Also, `map(list())` can help to make sure the type is list and store them in x an y seperately.
-
-
-    self.sortedWage=np.sort(self.wage)
-    self.s = sorted(zip(self.age,self.wage))
-    self.x,self.y = map(list,zip(*self.s))
+##### Adapt the code from task 1 
+I didn't create any new codes for task1. but i use different method from task1 to `subset` the data
+`range(50)` means i divided the image by 50 pieces
 
 
 
-##### plot the sorted array
-Create a variable `Index` for the searching.
-Therefore, the age can be found by the wage's index was called.
+    for i in range(50):
+          for j in range(50):
+              x0=(b.bounds[2]-b.bounds[0])*i/50 + b.bounds[0]
+              y0=(b.bounds[3]-b.bounds[1])*j/50 + b.bounds[1]
+              x1=(b.bounds[2]-b.bounds[0])*(i+1)/50+b.bounds[0]
+              y1=(b.bounds[3]-b.bounds[1])*(j+1)/50+b.bounds[1]           
+              c = lvisGround(filename,minX=x0,minY=y0,maxX=x1,maxY=y1)
 
 
-    Index = self.y.index(thisW)
-    Age = self.x[Index]
-    plt.bar(self.x,self.y)
-    plt.bar(Age,thisW)
+
+##### process all of the 2015 data in to a single gap-filled DEM
+process and concatenate the data by boolen
+
+
+    if(k==1):                                       
+                      x = c.lon
+                      y = c.lat
+                      c.setElevations()
+                    
+                      data = c.estimateGround()
+                      minX=np.min(x)
+                      maxX=np.max(x)
+                      minY=np.min(y)
+                      maxY=np.max(y)
+                    
+                      res = 100
+                    
+                      nx=int((maxX-minX)/res+1)
+                      ny=int((maxY-minY)/res+1)
+                  else:
+                      x = np.concatenate([x,c.lon])
+                      y = np.concatenate([y,c.lat])
+                      c.setElevations()
+                      data = np.concatenate([data,c.estimateGround()])
+                      
+                      minX=np.min(x)
+                      maxX=np.max(x)
+                      minY=np.min(y)
+                      maxY=np.max(y)
+                    
+                      res = 100
+                      
+                      nx=int((maxX-minX)/res+1)
+                      ny=int((maxY-minY)/res+1)
 
 
 ## task3.py
@@ -63,14 +101,12 @@ Therefore, the age can be found by the wage's index was called.
  * Write a new class to read both DEMs in to RAM 
  * Add a method to produce a new geotiff showing the change in elevation between the two dates
 
-##### Add a binary search
+##### Add overlay function
 I used `zip()` which is to map the similar index of multiple containers so that they can be used just using as single entity.
 Also, `map(list())` can help to make sure the type is list and store them in x an y seperately.
 
 
-    self.sortedWage=np.sort(self.wage)
-    self.s = sorted(zip(self.age,self.wage))
-    self.x,self.y = map(list,zip(*self.s))
+    overlay(self,filename1,filename2)
 
 
 
