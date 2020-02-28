@@ -3,7 +3,7 @@ OOSA-Assignment-2020-s1982773 created by GitHub Classroom
 
 # OOSA-Assignment-2020
 
-There are 4 tasks in final project. Fit.py is for the Function fitting part,whereas findQuartile_test.py is for Binary search.
+There are 4 tasks in final project. Each of them is connected to the previous one.
 
 ## task1.py
 ### Requirements
@@ -11,19 +11,24 @@ There are 4 tasks in final project. Fit.py is for the Function fitting part,wher
 * convert DEM to geotiff format 
 
 
-##### To include the correlation text on the plot, i used `plt.text(x,y,r' '=+str())`
+##### To process a flight line, i used `lvisGround(filename,onlyBounds=True)`
     
     
-    plt.text(15, 75, r'Correlation='+str(self.correl), color='red')
-  
-##### To rescale the y axis, i simply divided `self.wage` by 1000
+    op = lvisGround(filename,onlyBounds=True)
+    x0=op.bounds[0]
+    y0=op.bounds[1]
+    x1=(op.bounds[2]-op.bounds[0])/15+op.bounds[0]
+    y1=(op.bounds[3]-op.bounds[1])/15+op.bounds[1]
+##### To convert DEM to geotiff format, i simply used the function `self.wage` by 1000
     
     
     plt.plot(self.age,self.wage/1000,'.')
     plt.plot(x,y/1000)
     
-
+##### i also try to make a class
     
+    
+    class Lvis_to_geoTiff(lvisData,tiffHandle):
 
 ## task2.py
 ### Requirements
