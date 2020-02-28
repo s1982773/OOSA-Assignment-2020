@@ -102,7 +102,7 @@ process and concatenate the data by boolen
  * Add a method to produce a new geotiff showing the change in elevation between the two dates
 
 ##### Add overlay function
-I used `zip()` which is to map the similar index of multiple containers so that they can be used just using as single entity.
+I wrote `overlay()` to filter unnecessary data and keep what i want.
 Also, `map(list())` can help to make sure the type is list and store them in x an y seperately.
 
 
