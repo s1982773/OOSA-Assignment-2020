@@ -61,7 +61,7 @@ I didn't create any new codes for task1. but i use different method from task1 t
 
 
 ##### process all of the 2015 data in to a single gap-filled DEM
-process and concatenate the data by boolen
+process and concatenate the data by boolean
 
 
     if(k==1):                                       
@@ -103,8 +103,7 @@ process and concatenate the data by boolen
 
 ##### Add overlay function
 I wrote `overlay()` to filter unnecessary data and keep what i want.
-Also, `map(list())` can help to make sure the type is list and store them in x an y seperately.
-
+Also, ` intersection[y,x] = filename1[y,x]-filename2[y,x] ` can help to minus the overaly to get the difference of the elevation
 
     overlay(self,filename1,filename2)
 
@@ -116,11 +115,22 @@ Also, `map(list())` can help to make sure the type is list and store them in x a
  * user defined interval
  * produce an image of the change in elevation overlayed with “contour lines”	
 
-##### Add a binary search
-I used `zip()` which is to map the similar index of multiple containers so that they can be used just using as single entity.
-Also, `map(list())` can help to make sure the type is list and store them in x an y seperately.
+##### user defined interval
+I used `np.where(self.data == 0)` to find the null data and give a new value.
+Also, `newblock` is the amount of interval and `eachrange` is the value of each interval
 
 
-    self.sortedWage=np.sort(self.wage)
-    self.s = sorted(zip(self.age,self.wage))
-    self.x,self.y = map(list,zip(*self.s))
+    if(np.where(self.data == 0)):
+            return -999.0
+        else:
+            for i in range(1,self.block):
+                newblock = self.block*i
+                eachrange = minZ+self.block*i
+                self.interval_range= np.where(self.data == newblock, eachrange)
+                i = i + 1
+                
+##### plot_contour_line
+I used `plt.contourf` to draw the line but by using this may let the interval i set above function meaningless
+
+
+    plt.contourf
