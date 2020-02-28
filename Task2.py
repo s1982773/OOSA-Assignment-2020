@@ -18,6 +18,7 @@ import h5py
 if __name__=="__main__":
   '''Main block'''
 
+  #read several files
   listfile='/home/s1909844/OOSA/OOSA-code-public/assignment_2020/src/x.list'
   files = []
   with open(listfile,'r') as f:
@@ -28,34 +29,26 @@ if __name__=="__main__":
   for filename in files:
 #      filename='/geos/netdata/avtrain/data/3d/oosa/assignment/lvis/2015/ILVIS1B_AQ2015_1017_R1605_059744.h5'
       
+      #load all the data 
       b=lvisGround(filename,onlyBounds=True)
-      print(filename)
-      print(k)
       
       
-      # set some bounds
+      # subset some bounds
       for i in range(50):
           for j in range(50):
               x0=(b.bounds[2]-b.bounds[0])*i/50 + b.bounds[0]
               y0=(b.bounds[3]-b.bounds[1])*j/50 + b.bounds[1]
               x1=(b.bounds[2]-b.bounds[0])*(i+1)/50+b.bounds[0]
-              y1=(b.bounds[3]-b.bounds[1])*(j+1)/50+b.bounds[1]
-    
-        
+              y1=(b.bounds[3]-b.bounds[1])*(j+1)/50+b.bounds[1]           
               c = lvisGround(filename,minX=x0,minY=y0,maxX=x1,maxY=y1)
               
               if(c.value=='no data'):
-                  print('no data')
-              
-                
-                  
+                  print('no data')                            
               else:
                   k = k + 1
                   epsg = 3031
                   c.reproject(4326,epsg)
-                  if(k==1):
-                      
-                    
+                  if(k==1):                                       
                       x = c.lon
                       y = c.lat
                       c.setElevations()
