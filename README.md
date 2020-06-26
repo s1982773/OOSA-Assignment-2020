@@ -1,5 +1,5 @@
-# OOSA-Assignment-2020-s1982773
-OOSA-Assignment-2020-s1982773 created by GitHub Classroom
+# OOSA-Assignment-2020
+OOSA-Assignment-2020 created by GitHub Classroom
 
 # OOSA-Assignment-2020
 
